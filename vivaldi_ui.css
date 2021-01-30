@@ -1,0 +1,50 @@
+/*
+.toolbar-addressbar .addressfield,
+.toolbar-addressbar .addressfield + .toolbar-extensions:first-child,
+
+.toolbar-addressbar .searchfield ~ *,
+.toolbar-addressbar .addressfield + .profile-popup,
+.toolbar-addressbar .addressfield + .profile-popup ~ *,
+.toolbar-addressbar .addressfield + .toolbar-extensions {
+    order: 1;
+}*/
+
+.toolbar-addressbar .addressfield .toolbar-extensions:first-child{
+    margin-left: 50px; margin-right: 100px;
+    background: red;
+}
+
+.searchfield {
+	order: 3;
+	flex-basis: 300px !important;/* you took this code from a Vivaldi forum post and adjusted the pixel width; don't know what "important" refers to */
+}
+.extensions-wrapper {
+	order: 4;
+}
+
+
+
+
+.tab-strip{
+  overflow-x: scroll;
+  overflow-y: hidden;
+  -webkit-app-region: no-drag;
+}
+
+
+#tabs-container{
+  min-height: 40px;
+}
+
+.newtab{
+/*native window:*/
+  top: 0px !important;
+/*non-native window:*/
+/*	top:20px !important;*/
+  position: fixed !important;
+  right: 30px !important;
+  left: unset !important;
+  z-index: 9999 !important;
+}
+
+

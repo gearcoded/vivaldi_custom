@@ -1,0 +1,15 @@
+
+Run Vivaldi with the debugging port:
+vivaldi --remote-debugging-port=32167
+
+
+Open localhost:32167, find the window and use the dev tools to hack Vivaldi!
+
+
+Find `flexDirection:t,width:a`. 
+Add 20000" `flexDirection:t,width:a+20000`
+
+Add the following string to `browser.html`:
+```
+<script src="vivaldi_ui.js"></script>
+```
