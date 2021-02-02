@@ -31,8 +31,11 @@ function add_pinned_tabs(){
 		var normal_tabs = document.querySelector(".tab-strip");
 		var pinned_tabs = normal_tabs.querySelectorAll(".tab.pinned");
 		for (var i = 0; i < pinned_tabs.length; i++){
-			pinned_tabs[i].children[1].style.visibility = 'hidden';
-			pinned_tabs_root.appendChild(pinned_tabs[i].parentNode.parentNode);
+			var pinned_tab = pinned_tabs[i].childNodes[0]
+			if (pinned_tab) {
+				pinned_tab.style.visibility = 'hidden';
+				pinned_tabs_root.appendChild(pinned_tabs[i].parentNode.parentNode);
+			}
 		}
 	}, 3000)
 }
@@ -44,11 +47,12 @@ function add_pinned_tabs(){
 var active_tab_position = 0;
 setInterval(function(){
 	var resize = document.querySelector(".resize")
-	var active_tab = resize.querySelector(".active").parentNode;
-	var new_active_tab_position = active_tab.offsetLeft;
+	var active_tab = resize.querySelector(".active");
+	var resize_width = resize.getBoundingClientRect().width;
+	var new_active_tab_position = parseInt(active_tab.getBoundingClientRect().x);
 	
 	if (active_tab_position != new_active_tab_position){
-		active_tab_position = new_active_tab_position;
+		active_tab_position = new_active_tab_position
 		document.querySelector(".tab-strip").scrollTo(active_tab_position,0)
 	}
 },400)
