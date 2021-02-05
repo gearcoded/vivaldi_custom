@@ -45,19 +45,40 @@ function add_pinned_tabs(){
 
 // always scroll to active tab
 var active_tab_position = 0;
+var previous_active_tab = null;
+
+var stopp = false;
 setInterval(function(){
-	var resize = document.querySelector(".resize")
-	var active_tab = resize.querySelector(".active");
-	var resize_width = resize.getBoundingClientRect().width;
-	var new_active_tab_position = parseInt(active_tab.getBoundingClientRect().x);
+if (stopp/* || mouse_down*/) return;
+	var resize = document.querySelector(".resize");
+	var active_tab = resize.querySelector(".active").parentNode;
 	
-	if (active_tab_position != new_active_tab_position){
-		active_tab_position = new_active_tab_position
+	if (previous_active_tab == active_tab) return;
+	else previous_active_tab = active_tab;
+	
+	var resize_width = resize.getBoundingClientRect().width;
+	var scroll_state = document.querySelector(".tab-strip").scrollLeft;
+	var new_active_tab_position = active_tab.getBoundingClientRect().x;
+	
+	if (new_active_tab_position < -1 ||
+			new_active_tab_position > resize_width){
+		active_tab_position = new_active_tab_position + scroll_state;
 		document.querySelector(".tab-strip").scrollTo(active_tab_position,0)
 	}
 },400)
 
-
+/*
+var mouse_down = false;
+setTimeout(function(){
+document.querySelector("#tabs-tabbar-container").addEventListener("mousedown", function(){
+	mouse_down = true;
+	alert(23)
+});
+document.querySelector("#tabs-tabbar-container").addEventListener("mouseup", function(){
+	mouse_down = false;
+});
+},2000)
+*/
 
 
 /*custom new tab button, the approach didn't work
